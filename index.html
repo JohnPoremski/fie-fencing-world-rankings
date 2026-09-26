@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIE Fencing World Rankings</title>
+<style>
+  :root {
+    --ink: #16181d;
+    --paper: #f7f5f0;
+    --card: #ffffff;
+    --line: #e2ded4;
+    --accent: #a8123e;
+    --accent-ink: #ffffff;
+    --muted: #6b6f76;
+    --gold: #b08d2b;
+    --silver: #8a8f98;
+    --bronze: #a2622f;
+    font-size: 16px;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+  }
+  header {
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 20% 20%, rgba(168,18,62,0.06), transparent 40%),
+      radial-gradient(circle at 80% 0%, rgba(176,141,43,0.08), transparent 45%),
+      var(--paper);
+  }
+  header .eyebrow {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.72rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  header h1 {
+    font-size: clamp(2rem, 4vw, 2.9rem);
+    margin: 0.5rem 0 0.4rem;
+    letter-spacing: 0.01em;
+  }
+  header p.sub {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1rem;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+
+  main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 2.2rem 1.5rem 4rem;
+  }
+
+  .notice {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.88rem;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    padding: 0.9rem 1.1rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+  .notice strong { color: var(--ink); }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    align-items: flex-end;
+    margin-bottom: 1.8rem;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+  .control-group label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.68rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .seg {
+    display: inline-flex;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.2rem;
+  }
+  .seg button {
+    border: none;
+    background: transparent;
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: var(--ink);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .seg button.active {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .panel-title {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.7rem;
+  }
+  .panel-title span { color: var(--ink); font-weight: 700; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  thead th {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-align: left;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  thead th.num, tbody td.num { text-align: right; }
+  tbody td {
+    padding: 0.62rem 1rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.95rem;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fbf9f4; }
+  td.rank {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    width: 3.2rem;
+  }
+  tr.medal-1 td.rank { color: var(--gold); }
+  tr.medal-2 td.rank { color: var(--silver); }
+  tr.medal-3 td.rank { color: var(--bronze); }
+  td.points { font-variant-numeric: tabular-nums; }
+  .flag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 0.05rem 0.32rem;
+    margin-right: 0.5rem;
+  }
+
+  footer {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Fédération Internationale d'Escrime</div>
+  <h1>World Rankings</h1>
+  <p class="sub">Senior Individual &middot; Season 2026/2027</p>
+</header>
+
+<main>
+  <div class="notice">
+    <strong>Individual rankings only.</strong> FIE's current website (fie.org)
+    publishes senior individual world rankings by weapon and gender, but does
+    not currently publish a continuous team world ranking anywhere on the
+    site (checked the athlete pages, the full site route list, and the
+    documents section) &mdash; so no team standings are shown here.
+  </div>
+
+  <div class="controls">
+    <div class="control-group">
+      <label>Weapon</label>
+      <div class="seg" id="weapon-seg">
+        <button data-weapon="Epee" class="active">&Eacute;p&eacute;e</button>
+        <button data-weapon="Foil">Foil</button>
+        <button data-weapon="Sabre">Sabre</button>
+      </div>
+    </div>
+    <div class="control-group">
+      <label>Category</label>
+      <div class="seg" id="gender-seg">
+        <button data-gender="Women" class="active">Women</button>
+        <button data-gender="Men">Men</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="panel-title">Top 20 &middot; <span id="panel-label">Women's &Eacute;p&eacute;e</span></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="num">Rank</th>
+        <th>Athlete</th>
+        <th>Country</th>
+        <th class="num">Points</th>
+      </tr>
+    </thead>
+    <tbody id="ranking-body"></tbody>
+  </table>
+</main>
+
+<footer>
+  Source: <a href="https://fie.org/athletes" target="_blank" rel="noopener">fie.org/athletes</a>
+  (Fédération Internationale d'Escrime), individual senior world rankings, retrieved 2026-09-26.
+  Data cached locally at <code>data/fie_individual_world_rankings_2026-09-26.csv</code>.
+</footer>
+
+<script>
+  const DATA = [{"weapon": "Epee", "gender": "Women", "rank": "1", "name": "SANTUCCIO Alberta", "country": "ITA", "points": "200.000"}, {"weapon": "Epee", "gender": "Women", "rank": "2", "name": "MUHARI Eszter", "country": "HUN", "points": "200.000"}, {"weapon": "Epee", "gender": "Women", "rank": "3", "name": "SONG Sera", "country": "KOR", "points": "197.000"}, {"weapon": "Epee", "gender": "Women", "rank": "4", "name": "LEHIS Katrina", "country": "EST", "points": "190.000"}, {"weapon": "Epee", "gender": "Women", "rank": "5", "name": "RIZZI Giulia", "country": "ITA", "points": "168.000"}, {"weapon": "Epee", "gender": "Women", "rank": "6", "name": "HUSISIAN Hadley", "country": "USA", "points": "148.000"}, {"weapon": "Epee", "gender": "Women", "rank": "7", "name": "CANDASSAMY Marie-Florence", "country": "FRA", "points": "138.000"}, {"weapon": "Epee", "gender": "Women", "rank": "8", "name": "LOUIS MARIE Alexandra", "country": "FRA", "points": "122.000"}, {"weapon": "Epee", "gender": "Women", "rank": "9", "name": "MAKSYMENKO Anna", "country": "UKR", "points": "107.000"}, {"weapon": "Epee", "gender": "Women", "rank": "10", "name": "TANG Junyao", "country": "CHN", "points": "101.750"}, {"weapon": "Epee", "gender": "Women", "rank": "11", "name": "NDOLO Alexandra", "country": "KEN", "points": "96.000"}, {"weapon": "Epee", "gender": "Women", "rank": "12", "name": "MALLO-BRETON Auriane", "country": "FRA", "points": "88.000"}, {"weapon": "Epee", "gender": "Women", "rank": "13", "name": "HSIEH Kaylin Sin Yan", "country": "HKG", "points": "87.000"}, {"weapon": "Epee", "gender": "Women", "rank": "14", "name": "LIM Taehee", "country": "KOR", "points": "86.000"}, {"weapon": "Epee", "gender": "Women", "rank": "15", "name": "NIXON Catherine", "country": "USA", "points": "86.000"}, {"weapon": "Epee", "gender": "Women", "rank": "16", "name": "VAN BRUMMEN Anna", "country": "USA", "points": "74.000"}, {"weapon": "Epee", "gender": "Women", "rank": "17", "name": "TERAYAMA Tamaki", "country": "JPN", "points": "71.500"}, {"weapon": "Epee", "gender": "Women", "rank": "18", "name": "XIAO Ruien", "country": "CAN", "points": "71.000"}, {"weapon": "Epee", "gender": "Women", "rank": "19", "name": "VON KERSSENBROCK Diane", "country": "FRA", "points": "70.250"}, {"weapon": "Epee", "gender": "Women", "rank": "20", "name": "EHLER Alexandra", "country": "GER", "points": "67.500"}, {"weapon": "Epee", "gender": "Men", "rank": "1", "name": "ELSAYED Mohamed", "country": "EGY", "points": "208.000"}, {"weapon": "Epee", "gender": "Men", "rank": "2", "name": "KANO Koki", "country": "JPN", "points": "174.000"}, {"weapon": "Epee", "gender": "Men", "rank": "3", "name": "MENCARELLI Simone", "country": "ITA", "points": "146.500"}, {"weapon": "Epee", "gender": "Men", "rank": "4", "name": "TULEN Tristan", "country": "NED", "points": "134.000"}, {"weapon": "Epee", "gender": "Men", "rank": "5", "name": "GALASSI Matteo", "country": "ITA", "points": "129.000"}, {"weapon": "Epee", "gender": "Men", "rank": "6", "name": "YAMADA Masaru", "country": "JPN", "points": "128.000"}, {"weapon": "Epee", "gender": "Men", "rank": "7", "name": "DI VEROLI Davide", "country": "ITA", "points": "124.000"}, {"weapon": "Epee", "gender": "Men", "rank": "8", "name": "KURBANOV Ruslan", "country": "KAZ", "points": "118.000"}, {"weapon": "Epee", "gender": "Men", "rank": "9", "name": "SVICHKAR Roman", "country": "UKR", "points": "112.000"}, {"weapon": "Epee", "gender": "Men", "rank": "10", "name": "KONGSTAD Conrad Seibaek", "country": "DEN", "points": "111.000"}, {"weapon": "Epee", "gender": "Men", "rank": "11", "name": "KOCH Mate Tamas", "country": "HUN", "points": "107.000"}, {"weapon": "Epee", "gender": "Men", "rank": "12", "name": "MALCOTTI Lucas", "country": "SUI", "points": "103.500"}, {"weapon": "Epee", "gender": "Men", "rank": "13", "name": "ANDRASFI Tibor", "country": "HUN", "points": "100.000"}, {"weapon": "Epee", "gender": "Men", "rank": "14", "name": "NAGY David", "country": "HUN", "points": "99.000"}, {"weapon": "Epee", "gender": "Men", "rank": "15", "name": "JURKA Jakub", "country": "CZE", "points": "95.000"}, {"weapon": "Epee", "gender": "Men", "rank": "16", "name": "SIKLOSI Gergely", "country": "HUN", "points": "93.000"}, {"weapon": "Epee", "gender": "Men", "rank": "17", "name": "FEINBERG Gabriel", "country": "USA", "points": "78.750"}, {"weapon": "Epee", "gender": "Men", "rank": "18", "name": "LUGONES RUGGERI Jesus Andres", "country": "ARG", "points": "76.500"}, {"weapon": "Epee", "gender": "Men", "rank": "19", "name": "SHVELIDZE Dmitrii", "country": "RUS", "points": "73.500"}, {"weapon": "Epee", "gender": "Men", "rank": "20", "name": "BAYARD Alexis", "country": "SUI", "points": "73.000"}, {"weapon": "Foil", "gender": "Women", "rank": "1", "name": "FAVARETTO Martina", "country": "ITA", "points": "232.000"}, {"weapon": "Foil", "gender": "Women", "rank": "2", "name": "BATINI Martina", "country": "ITA", "points": "209.000"}, {"weapon": "Foil", "gender": "Women", "rank": "3", "name": "UENO Yuka", "country": "JPN", "points": "209.000"}, {"weapon": "Foil", "gender": "Women", "rank": "4", "name": "ERRIGO Arianna", "country": "ITA", "points": "203.000"}, {"weapon": "Foil", "gender": "Women", "rank": "5", "name": "SCRUGGS Lauren", "country": "USA", "points": "150.000"}, {"weapon": "Foil", "gender": "Women", "rank": "6", "name": "KIKUCHI Komaki", "country": "JPN", "points": "140.000"}, {"weapon": "Foil", "gender": "Women", "rank": "7", "name": "CRISTINO Anna", "country": "ITA", "points": "123.000"}, {"weapon": "Foil", "gender": "Women", "rank": "8", "name": "AZUMA Sera", "country": "JPN", "points": "117.000"}, {"weapon": "Foil", "gender": "Women", "rank": "9", "name": "MARTYANOVA Marta", "country": "RUS", "points": "112.000"}, {"weapon": "Foil", "gender": "Women", "rank": "10", "name": "STUTCHBURY Carolina", "country": "USA", "points": "109.000"}, {"weapon": "Foil", "gender": "Women", "rank": "11", "name": "HARVEY Eleanor", "country": "CAN", "points": "108.000"}, {"weapon": "Foil", "gender": "Women", "rank": "12", "name": "KIEFER Lee", "country": "USA", "points": "96.000"}, {"weapon": "Foil", "gender": "Women", "rank": "13", "name": "VOLPI Alice", "country": "ITA", "points": "90.000"}, {"weapon": "Foil", "gender": "Women", "rank": "14", "name": "SOPIT Olga", "country": "UKR", "points": "89.000"}, {"weapon": "Foil", "gender": "Women", "rank": "15", "name": "PASZTOR Flora", "country": "HUN", "points": "86.000"}, {"weapon": "Foil", "gender": "Women", "rank": "16", "name": "TSUJI Sumire", "country": "JPN", "points": "81.000"}, {"weapon": "Foil", "gender": "Women", "rank": "17", "name": "RANVIER Pauline", "country": "FRA", "points": "75.000"}, {"weapon": "Foil", "gender": "Women", "rank": "18", "name": "POLOZIUK Alina", "country": "UKR", "points": "74.000"}, {"weapon": "Foil", "gender": "Women", "rank": "19", "name": "PENIUSHKINA Vladislava", "country": "RUS", "points": "71.500"}, {"weapon": "Foil", "gender": "Women", "rank": "20", "name": "HAYES Nadia", "country": "CAN", "points": "70.000"}, {"weapon": "Foil", "gender": "Men", "rank": "1", "name": "CHOUPENITCH Alexander", "country": "CZE", "points": "218.000"}, {"weapon": "Foil", "gender": "Men", "rank": "2", "name": "BORODACHEV Kirill", "country": "RUS", "points": "189.000"}, {"weapon": "Foil", "gender": "Men", "rank": "3", "name": "BIANCHI Guillaume", "country": "ITA", "points": "176.000"}, {"weapon": "Foil", "gender": "Men", "rank": "4", "name": "MACCHI Filippo", "country": "ITA", "points": "170.000"}, {"weapon": "Foil", "gender": "Men", "rank": "5", "name": "IIMURA Kazuki", "country": "JPN", "points": "157.000"}, {"weapon": "Foil", "gender": "Men", "rank": "6", "name": "MASSIALAS Alexander", "country": "USA", "points": "148.000"}, {"weapon": "Foil", "gender": "Men", "rank": "7", "name": "CHOI Chun Yin Ryan", "country": "HKG", "points": "134.000"}, {"weapon": "Foil", "gender": "Men", "rank": "8", "name": "ITKIN Nick", "country": "USA", "points": "128.000"}, {"weapon": "Foil", "gender": "Men", "rank": "9", "name": "MARTINI Tommaso", "country": "ITA", "points": "122.000"}, {"weapon": "Foil", "gender": "Men", "rank": "10", "name": "SAVIN Rafael", "country": "FRA", "points": "118.000"}, {"weapon": "Foil", "gender": "Men", "rank": "11", "name": "DOSA Daniel", "country": "HUN", "points": "113.000"}, {"weapon": "Foil", "gender": "Men", "rank": "12", "name": "CHEUNG Ka Long", "country": "HKG", "points": "113.000"}, {"weapon": "Foil", "gender": "Men", "rank": "13", "name": "MARINI Tommaso", "country": "ITA", "points": "112.000"}, {"weapon": "Foil", "gender": "Men", "rank": "14", "name": "TOLBA Abdelrahman", "country": "EGY", "points": "102.000"}, {"weapon": "Foil", "gender": "Men", "rank": "15", "name": "OLIVARES Marcello", "country": "USA", "points": "92.000"}, {"weapon": "Foil", "gender": "Men", "rank": "16", "name": "MATSUYAMA Kyosuke", "country": "JPN", "points": "92.000"}, {"weapon": "Foil", "gender": "Men", "rank": "17", "name": "RZADKOWSKI Andrzej", "country": "POL", "points": "89.500"}, {"weapon": "Foil", "gender": "Men", "rank": "18", "name": "BARANNIKOV Egor", "country": "RUS", "points": "89.000"}, {"weapon": "Foil", "gender": "Men", "rank": "19", "name": "HAMZA Mohamed", "country": "EGY", "points": "84.000"}, {"weapon": "Foil", "gender": "Men", "rank": "20", "name": "BORODACHEV Anton", "country": "RUS", "points": "84.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "1", "name": "EGORIAN Yana", "country": "RUS", "points": "175.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "2", "name": "BATTAI Sugar Katinka", "country": "HUN", "points": "175.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "3", "name": "MIKHAILOVA Alina", "country": "RUS", "points": "173.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "4", "name": "ILIEVA Yoana", "country": "BUL", "points": "159.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "5", "name": "MARTIN-PORTUGUES Lucia", "country": "ESP", "points": "148.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "6", "name": "NOUTCHA Sarah", "country": "FRA", "points": "146.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "7", "name": "BALZER Sara", "country": "FRA", "points": "146.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "8", "name": "TORI Toscane", "country": "FRA", "points": "126.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "9", "name": "BATTISTON Michela", "country": "ITA", "points": "122.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "10", "name": "EIFLER Larissa", "country": "GER", "points": "114.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "11", "name": "JEON Hayoung", "country": "KOR", "points": "113.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "12", "name": "EMURA Misaki", "country": "JPN", "points": "111.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "13", "name": "CHAMBERLAIN Maia", "country": "USA", "points": "109.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "14", "name": "CHOI Sebin", "country": "KOR", "points": "103.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "15", "name": "SPIESZ Anna", "country": "HUN", "points": "92.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "16", "name": "ERBIL Nisanur", "country": "TUR", "points": "90.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "17", "name": "SZUCS Luca", "country": "HUN", "points": "86.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "18", "name": "KOMASHCHUK Alina", "country": "UKR", "points": "80.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "19", "name": "VIALE Mariella", "country": "ITA", "points": "79.000"}, {"weapon": "Sabre", "gender": "Women", "rank": "20", "name": "NAVARRO Araceli", "country": "ESP", "points": "78.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "1", "name": "PATRICE Sebastien", "country": "FRA", "points": "198.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "2", "name": "DO Gyeongdong", "country": "KOR", "points": "178.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "3", "name": "OH Sanguk", "country": "KOR", "points": "158.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "4", "name": "PIANFETTI Maxime", "country": "FRA", "points": "157.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "5", "name": "GRAUDYN Pavel", "country": "RUS", "points": "152.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "6", "name": "FERJANI Fares", "country": "TUN", "points": "149.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "7", "name": "HEATHCOCK Colin", "country": "USA", "points": "143.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "8", "name": "HESHAM Ahmed", "country": "EGY", "points": "142.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "9", "name": "RABB Krisztian", "country": "HUN", "points": "135.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "10", "name": "BAZADZE Sandro", "country": "GEO", "points": "134.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "11", "name": "MORRILL William", "country": "USA", "points": "132.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "12", "name": "KINDLER Frederic", "country": "GER", "points": "113.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "13", "name": "PATRICE Jean-Philippe", "country": "FRA", "points": "106.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "14", "name": "AMER Mohamed", "country": "EGY", "points": "106.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "15", "name": "KOKUBO Mao", "country": "JPN", "points": "101.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "16", "name": "IBRAGIMOV Kamil", "country": "RUS", "points": "94.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "17", "name": "SZILAGYI Aron", "country": "HUN", "points": "91.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "18", "name": "ELSISSY Ziad", "country": "EGY", "points": "90.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "19", "name": "LUKASHENKO Darii", "country": "USA", "points": "85.000"}, {"weapon": "Sabre", "gender": "Men", "rank": "20", "name": "COVALIU Vlad", "country": "ROU", "points": "84.000"}];
+
+  const weaponLabels = { Epee: "&Eacute;p&eacute;e", Foil: "Foil", Sabre: "Sabre" };
+  const weaponLabelsText = { Epee: "Épée", Foil: "Foil", Sabre: "Sabre" };
+
+  let currentWeapon = "Epee";
+  let currentGender = "Women";
+
+  const weaponSeg = document.getElementById("weapon-seg");
+  const genderSeg = document.getElementById("gender-seg");
+  const body = document.getElementById("ranking-body");
+  const panelLabel = document.getElementById("panel-label");
+
+  function render() {
+    const rows = DATA.filter(r => r.weapon === currentWeapon && r.gender === currentGender)
+                      .sort((a, b) => Number(a.rank) - Number(b.rank));
+
+    body.innerHTML = rows.map(r => {
+      const rankNum = Number(r.rank);
+      const medalClass = rankNum <= 3 ? ` medal-${rankNum}` : "";
+      return `<tr class="${medalClass.trim()}">
+        <td class="rank">${r.rank}</td>
+        <td>${r.name}</td>
+        <td><span class="flag">${r.country}</span></td>
+        <td class="num points">${r.points}</td>
+      </tr>`;
+    }).join("");
+
+    panelLabel.textContent = `${currentGender}'s ${weaponLabelsText[currentWeapon]}`;
+  }
+
+  weaponSeg.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+    currentWeapon = btn.dataset.weapon;
+    [...weaponSeg.children].forEach(b => b.classList.toggle("active", b === btn));
+    render();
+  });
+
+  genderSeg.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+    currentGender = btn.dataset.gender;
+    [...genderSeg.children].forEach(b => b.classList.toggle("active", b === btn));
+    render();
+  });
+
+  render();
+</script>
+
+</body>
+</html>

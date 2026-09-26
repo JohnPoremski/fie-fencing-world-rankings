@@ -1,0 +1,121 @@
+weapon,gender,rank,name,country,points
+Epee,Women,1,SANTUCCIO Alberta,ITA,200.000
+Epee,Women,2,MUHARI Eszter,HUN,200.000
+Epee,Women,3,SONG Sera,KOR,197.000
+Epee,Women,4,LEHIS Katrina,EST,190.000
+Epee,Women,5,RIZZI Giulia,ITA,168.000
+Epee,Women,6,HUSISIAN Hadley,USA,148.000
+Epee,Women,7,CANDASSAMY Marie-Florence,FRA,138.000
+Epee,Women,8,LOUIS MARIE Alexandra,FRA,122.000
+Epee,Women,9,MAKSYMENKO Anna,UKR,107.000
+Epee,Women,10,TANG Junyao,CHN,101.750
+Epee,Women,11,NDOLO Alexandra,KEN,96.000
+Epee,Women,12,MALLO-BRETON Auriane,FRA,88.000
+Epee,Women,13,HSIEH Kaylin Sin Yan,HKG,87.000
+Epee,Women,14,LIM Taehee,KOR,86.000
+Epee,Women,15,NIXON Catherine,USA,86.000
+Epee,Women,16,VAN BRUMMEN Anna,USA,74.000
+Epee,Women,17,TERAYAMA Tamaki,JPN,71.500
+Epee,Women,18,XIAO Ruien,CAN,71.000
+Epee,Women,19,VON KERSSENBROCK Diane,FRA,70.250
+Epee,Women,20,EHLER Alexandra,GER,67.500
+Epee,Men,1,ELSAYED Mohamed,EGY,208.000
+Epee,Men,2,KANO Koki,JPN,174.000
+Epee,Men,3,MENCARELLI Simone,ITA,146.500
+Epee,Men,4,TULEN Tristan,NED,134.000
+Epee,Men,5,GALASSI Matteo,ITA,129.000
+Epee,Men,6,YAMADA Masaru,JPN,128.000
+Epee,Men,7,DI VEROLI Davide,ITA,124.000
+Epee,Men,8,KURBANOV Ruslan,KAZ,118.000
+Epee,Men,9,SVICHKAR Roman,UKR,112.000
+Epee,Men,10,KONGSTAD Conrad Seibaek,DEN,111.000
+Epee,Men,11,KOCH Mate Tamas,HUN,107.000
+Epee,Men,12,MALCOTTI Lucas,SUI,103.500
+Epee,Men,13,ANDRASFI Tibor,HUN,100.000
+Epee,Men,14,NAGY David,HUN,99.000
+Epee,Men,15,JURKA Jakub,CZE,95.000
+Epee,Men,16,SIKLOSI Gergely,HUN,93.000
+Epee,Men,17,FEINBERG Gabriel,USA,78.750
+Epee,Men,18,LUGONES RUGGERI Jesus Andres,ARG,76.500
+Epee,Men,19,SHVELIDZE Dmitrii,RUS,73.500
+Epee,Men,20,BAYARD Alexis,SUI,73.000
+Foil,Women,1,FAVARETTO Martina,ITA,232.000
+Foil,Women,2,BATINI Martina,ITA,209.000
+Foil,Women,3,UENO Yuka,JPN,209.000
+Foil,Women,4,ERRIGO Arianna,ITA,203.000
+Foil,Women,5,SCRUGGS Lauren,USA,150.000
+Foil,Women,6,KIKUCHI Komaki,JPN,140.000
+Foil,Women,7,CRISTINO Anna,ITA,123.000
+Foil,Women,8,AZUMA Sera,JPN,117.000
+Foil,Women,9,MARTYANOVA Marta,RUS,112.000
+Foil,Women,10,STUTCHBURY Carolina,USA,109.000
+Foil,Women,11,HARVEY Eleanor,CAN,108.000
+Foil,Women,12,KIEFER Lee,USA,96.000
+Foil,Women,13,VOLPI Alice,ITA,90.000
+Foil,Women,14,SOPIT Olga,UKR,89.000
+Foil,Women,15,PASZTOR Flora,HUN,86.000
+Foil,Women,16,TSUJI Sumire,JPN,81.000
+Foil,Women,17,RANVIER Pauline,FRA,75.000
+Foil,Women,18,POLOZIUK Alina,UKR,74.000
+Foil,Women,19,PENIUSHKINA Vladislava,RUS,71.500
+Foil,Women,20,HAYES Nadia,CAN,70.000
+Foil,Men,1,CHOUPENITCH Alexander,CZE,218.000
+Foil,Men,2,BORODACHEV Kirill,RUS,189.000
+Foil,Men,3,BIANCHI Guillaume,ITA,176.000
+Foil,Men,4,MACCHI Filippo,ITA,170.000
+Foil,Men,5,IIMURA Kazuki,JPN,157.000
+Foil,Men,6,MASSIALAS Alexander,USA,148.000
+Foil,Men,7,CHOI Chun Yin Ryan,HKG,134.000
+Foil,Men,8,ITKIN Nick,USA,128.000
+Foil,Men,9,MARTINI Tommaso,ITA,122.000
+Foil,Men,10,SAVIN Rafael,FRA,118.000
+Foil,Men,11,DOSA Daniel,HUN,113.000
+Foil,Men,12,CHEUNG Ka Long,HKG,113.000
+Foil,Men,13,MARINI Tommaso,ITA,112.000
+Foil,Men,14,TOLBA Abdelrahman,EGY,102.000
+Foil,Men,15,OLIVARES Marcello,USA,92.000
+Foil,Men,16,MATSUYAMA Kyosuke,JPN,92.000
+Foil,Men,17,RZADKOWSKI Andrzej,POL,89.500
+Foil,Men,18,BARANNIKOV Egor,RUS,89.000
+Foil,Men,19,HAMZA Mohamed,EGY,84.000
+Foil,Men,20,BORODACHEV Anton,RUS,84.000
+Sabre,Women,1,EGORIAN Yana,RUS,175.000
+Sabre,Women,2,BATTAI Sugar Katinka,HUN,175.000
+Sabre,Women,3,MIKHAILOVA Alina,RUS,173.000
+Sabre,Women,4,ILIEVA Yoana,BUL,159.000
+Sabre,Women,5,MARTIN-PORTUGUES Lucia,ESP,148.000
+Sabre,Women,6,NOUTCHA Sarah,FRA,146.000
+Sabre,Women,7,BALZER Sara,FRA,146.000
+Sabre,Women,8,TORI Toscane,FRA,126.000
+Sabre,Women,9,BATTISTON Michela,ITA,122.000
+Sabre,Women,10,EIFLER Larissa,GER,114.000
+Sabre,Women,11,JEON Hayoung,KOR,113.000
+Sabre,Women,12,EMURA Misaki,JPN,111.000
+Sabre,Women,13,CHAMBERLAIN Maia,USA,109.000
+Sabre,Women,14,CHOI Sebin,KOR,103.000
+Sabre,Women,15,SPIESZ Anna,HUN,92.000
+Sabre,Women,16,ERBIL Nisanur,TUR,90.000
+Sabre,Women,17,SZUCS Luca,HUN,86.000
+Sabre,Women,18,KOMASHCHUK Alina,UKR,80.000
+Sabre,Women,19,VIALE Mariella,ITA,79.000
+Sabre,Women,20,NAVARRO Araceli,ESP,78.000
+Sabre,Men,1,PATRICE Sebastien,FRA,198.000
+Sabre,Men,2,DO Gyeongdong,KOR,178.000
+Sabre,Men,3,OH Sanguk,KOR,158.000
+Sabre,Men,4,PIANFETTI Maxime,FRA,157.000
+Sabre,Men,5,GRAUDYN Pavel,RUS,152.000
+Sabre,Men,6,FERJANI Fares,TUN,149.000
+Sabre,Men,7,HEATHCOCK Colin,USA,143.000
+Sabre,Men,8,HESHAM Ahmed,EGY,142.000
+Sabre,Men,9,RABB Krisztian,HUN,135.000
+Sabre,Men,10,BAZADZE Sandro,GEO,134.000
+Sabre,Men,11,MORRILL William,USA,132.000
+Sabre,Men,12,KINDLER Frederic,GER,113.000
+Sabre,Men,13,PATRICE Jean-Philippe,FRA,106.000
+Sabre,Men,14,AMER Mohamed,EGY,106.000
+Sabre,Men,15,KOKUBO Mao,JPN,101.000
+Sabre,Men,16,IBRAGIMOV Kamil,RUS,94.000
+Sabre,Men,17,SZILAGYI Aron,HUN,91.000
+Sabre,Men,18,ELSISSY Ziad,EGY,90.000
+Sabre,Men,19,LUKASHENKO Darii,USA,85.000
+Sabre,Men,20,COVALIU Vlad,ROU,84.000
